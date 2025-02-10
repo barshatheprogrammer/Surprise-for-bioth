@@ -1,157 +1,115 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Something Special</title>
+    <title>Our Special Surprise</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary-color: #7e57c2;
+            --secondary-color: #ba68c8;
+            --accent-color: #e1bee7;
+            --text-color: #333;
+            --boy-color: #89CFF0;
+            --girl-color: #f8bbd0;
+        }
+
+        * {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #e3f2fd;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            padding: 1rem;
             overflow-x: hidden;
         }
 
         .storybook {
             background: #fff;
-            padding: 2rem;
+            padding: clamp(1rem, 5vw, 3rem);
             border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
-            max-width: 600px;
-            width: 90%;
-            margin: 2rem;
+            width: min(95%, 700px);
+            margin: 1rem auto;
+            overflow: hidden;
         }
+
         .page-corner {
             position: absolute;
             top: 0;
             right: 0;
-            width: 0;
-            height: 0;
-            border-top: 50px solid #f0f0f0;
-            border-left: 50px solid transparent;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, transparent 50%, #f0f0f0 50%);
             border-radius: 0 20px 0 0;
         }
 
-        h1 {
-            color: #7e57c2;
-            font-size: 2.5rem;
+        h1, h2 {
+            color: var(--primary-color);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
-            font-family: 'Arial', cursive;
+            text-align: center;
+            font-weight: 700;
         }
 
         .animals {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
 
         .animal {
-            font-size: 4rem;
+            font-size: clamp(2rem, 6vw, 4rem);
             animation: bounce 2s infinite;
         }
 
         .message {
-            font-size: 1.5rem;
-            color: #5c6bc0;
-            margin: 2rem 0;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-color);
             line-height: 1.6;
+            text-align: center;
+            margin: 2rem 0;
         }
 
         .details {
-            background: #f3e5f5;
+            background: var(--accent-color);
             padding: 1.5rem;
             border-radius: 15px;
             margin: 2rem 0;
-        }
-
-        .sparkles {
-            position: absolute;
-            font-size: 1.5rem;
-            pointer-events: none;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .ribbon {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 150px;
-            background: #ba68c8;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-            z-index: -1;
-        }
-
-        .countdown {
-            font-size: 1.2rem;
-            color: #7e57c2;
-            margin-top: 2rem;
-            font-weight: bold;
+            text-align: center;
         }
 
         .envelope {
-            position: relative;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #e1bee7;
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            border: none;
+            margin: 1rem auto;
+            display: block;
         }
 
         .envelope:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-
-      
-
-        /* .photo-gallery {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        .photo {
-            width: 300px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .photo:hover {
-            transform: scale(1.05);
-        } */
-
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 10px;
-        }
-        
-
-        /* ... (previous styles) ... */
 
         .modal {
             display: none;
@@ -164,274 +122,280 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
         }
 
         .modal-content {
             background: white;
-            padding: 2rem;
+            padding: clamp(1rem, 3vw, 2rem);
             border-radius: 20px;
-            max-width: 90%;
-            text-align: center;
+            width: min(95%, 1200px);
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
-            height: 100vh;
-            overflow-y:auto;
         }
 
         .photo-gallery {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: 2rem 0;
         }
 
         .photo-container {
             position: relative;
-            cursor: pointer;
-        }
-
-        .photo {
-            width: 300px;
-            height: 400px;
-            object-fit: cover;
+            aspect-ratio: 3/4;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            cursor: pointer;
             transition: transform 0.3s;
         }
 
-        .photo:hover {
-            transform: scale(1.05);
+        .photo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
 
         .story-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            /* width: 100%; */
-            height: 90%;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
             display: none;
+            padding: 1.5rem;
+            text-align: center;
             justify-content: center;
             align-items: center;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .story-overlay.visible {
+            opacity: 1;
+        }
+
+        .reveal-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.5s ease;
+        }
+
+        .gender-icon {
+            font-size: clamp(2rem, 6vw, 4rem);
+            animation: pulse 1.5s infinite;
+        }
+
+        .reveal-text {
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 10;
+            transition: transform 0.3s;
+        }
+
+        .close-button:hover {
+            transform: scale(1.1);
         }
 
         .final-message {
             display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8bbd0;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--accent-color);
             border-radius: 10px;
-            font-size: 1.2rem;
-            color: #d81b60;
-            animation: fadeIn 1s;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-color);
+            text-align: center;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 1001;
         }
 
         .heart-float {
-            position: absolute;
+            position: fixed;
             font-size: 2rem;
             pointer-events: none;
+            z-index: 1001;
             animation: floatUp 2s forwards;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         @keyframes floatUp {
             0% { transform: translateY(0) scale(1); opacity: 1; }
             100% { transform: translateY(-100px) scale(0); opacity: 0; }
         }
-        .photo-container.reveal {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.5s;
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
-        .reveal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   /* Neutral color initially */
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    transition: background-color 2s;
-}
 
-.reveal-text {
-    font-size: 2.5rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    text-align: center;
-    transition: all 0.5s;
-}
+        @media (max-width: 768px) {
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .story-overlay {
+                font-size: 0.9rem;
+                padding: 1rem;
+            }
 
-/* Add a pulsing animation for the question marks */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
+            .modal-content {
+                padding: 1rem;
+            }
+        }
 
-.gender-icon {
-    font-size: 4rem;
-    animation: pulse 1.5s infinite;
-}
+        @media (max-width: 480px) {
+            .storybook {
+                padding: 1rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="storybook">
+    <div class="storybook animate__animated animate__fadeIn">
         <div class="page-corner"></div>
-        <div class="ribbon"></div>
         
         <h1>A New Story Begins... 📖</h1>
 
         <div class="animals">
-            <div class="animal">🐘</div>
-            <div class="animal">🦒</div>
-            <div class="animal">🐼</div>
+            <div class="animal animate__animated animate__bounce">🐘</div>
+            <div class="animal animate__animated animate__bounce animate__delay-1s">🦒</div>
+            <div class="animal animate__animated animate__bounce animate__delay-2s">🐼</div>
         </div>
 
-        <div class="message">
+        <div class="message animate__animated animate__fadeIn animate__delay-0.5s">
             Once upon a time,<br>
             Two loving hearts discovered<br>
             They were about to become<br>
             Mom and Dad! 👶
         </div>
 
-        <div class="details">
+        <div class="details animate__animated animate__fadeIn animate__delay-0.9s">
             <p>Our family is growing by two tiny feet!</p>
-            <div class="countdown" id="timer"></div>
+            <div id="countdown">Coming Soon... 🎀</div>
         </div>
 
-        <div class="envelope" id="surprise">
+        <button class="envelope animate__animated animate__pulse animate__infinite" id="surprise">
             Click for a surprise! 🎁
-        </div>
+        </button>
     </div>
 
     <div class="modal" id="photoModal">
-        <button class="close-button" onclick="closeModal()">✖</button>
-        <div class="modal-content">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <button class="close-button" onclick="closeModal()">✖</button>
             <h2>Our Journey Begins ❤️</h2>
+            
             <div class="photo-gallery">
                 <div class="photo-container" onclick="showStory(1)">
-                    <img src="photo1.jpg" alt="Mom in polka dot dress" class="photo">
+                    <img src="/photo1.jpg" alt="Family photo 1" class="photo">
                     <div class="story-overlay" id="story1">
-                        To my favorite couple, guess who's joining our tiny love squad? My heart fills with joy knowing you're about to embark on this beautiful journey of parenthood. Your kindness, patience, and strength will make you wonderful mothers, and your child will be so blessed to have you both.🌟
-                        
+                        To my wonderful Mama and Mami, guess who's joining our tiny love squad? 
+                        Your kindness, patience, and strength will make you wonderful mothers, 
+                        and your child will be so blessed to have you both. 🌟
                     </div>
-                    
                 </div>
-                
-                <!-- New middle reveal container -->
+
                 <div class="photo-container reveal" id="genderReveal" onclick="revealGender()">
-                    <img src="photo3.jpg" alt="Gender reveal" class="photo">
+                    <img src="/photo3.jpg" alt="Gender reveal photo" class="photo">
                     <div class="reveal-overlay">
-                        <div class="reveal-content">
-                            <div class="gender-icon">👶</div>
-                            <div class="reveal-text">It's a BOY!💙 <span>It's a GIRL!💗</span></div>
-                        </div>
+                        <div class="gender-icon">👶</div>
+                        <div class="reveal-text">Click to reveal!</div>
                     </div>
                 </div>
 
                 <div class="photo-container" onclick="showStory(2)">
-                    <img src="photo2.jpg" alt="Mom in coral dress" class="photo">
+                    <img src="/photo2.jpg" alt="Family photo 2" class="photo">
                     <div class="story-overlay" id="story2">
-                        I'm excited to see you both as mommies and can't wait to meet my little sibling! Love you both so much! ❤️
-                        
-                    
+                        I'm excited to see you both as mommies and can't wait to meet my little sibling! 
+                        Love you both so much! ❤️
                     </div>
                 </div>
             </div>
+
             <div class="final-message" id="finalMessage">
                 And so begins the most beautiful chapter of your lives... 
                 A story of love, hope, and the miracle of new life. 
-                Stay tuned for the next page of yours adventure! 
+                Stay tuned for the next page of your adventure! 
                 🎀 👶 💖
             </div>
         </div>
     </div>
 
     <script>
-        // Set the date 9 months from today
-        const futureDate = new Date();
-        futureDate.setMonth(futureDate.getMonth() + 9);
-
-        // function updateTimer() {
-        //     const now = new Date();
-        //     const difference = futureDate - now;
-
-        //     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        //     const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        //     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-
-        //     document.getElementById('timer').innerHTML = 
-        //         `Arriving in: ${days} days, ${hours} hours, and ${minutes} minutes`;
-        // }
-
-        // setInterval(updateTimer, 60000);
-        // updateTimer();
-
-        // Create sparkle effect
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkles';
-            sparkle.innerHTML = '✨';
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.top = Math.random() * 100 + 'vh';
-            document.body.appendChild(sparkle);
-
-            setTimeout(() => sparkle.remove(), 2000);
-        }
-
-        setInterval(createSparkle, 1000);
-
-        // Modal functionality
-        const modal = document.getElementById('photoModal');
-        
-        function openModal() {
-            modal.style.display = 'flex';
-            // Create celebratory effects when opening modal
-            for(let i = 0; i < 20; i++) {
-                setTimeout(createSparkle, i * 100);
-            }
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        document.getElementById('surprise').addEventListener('click', openModal);
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
         let storyProgress = 0;
-        
+
         function showStory(number) {
             const overlay = document.getElementById(`story${number}`);
             overlay.style.display = 'flex';
+            setTimeout(() => overlay.classList.add('visible'), 10);
             
-            // Create floating hearts
             createFloatingHearts(event);
             
             storyProgress++;
             if (storyProgress === 2) {
                 setTimeout(() => {
-                    document.getElementById('finalMessage').style.display = 'block';
+                    const finalMessage = document.getElementById('finalMessage');
+                    finalMessage.style.display = 'block';
+                    finalMessage.classList.add('animate__animated', 'animate__fadeIn');
                     createFloatingHearts(event);
                 }, 1000);
             }
@@ -450,74 +414,55 @@
             }
         }
 
-        function openModal() {
-            modal.style.display = 'flex';
-            storyProgress = 0;
-            // Reset overlays and final message
-            document.querySelectorAll('.story-overlay').forEach(overlay => {
-                overlay.style.display = 'none';
-            });
-            document.getElementById('finalMessage').style.display = 'none';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        document.getElementById('surprise').addEventListener('click', openModal);
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
+        function createConfetti(gender) {
+            const colors = gender === 'boy' 
+                ? ['#89CFF0', '#4682B4', '#0000FF', '#000080', '#FFFFFF']
+                : ['#f8bbd0', '#FF69B4', '#FF1493', '#C71585', '#FFFFFF'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confettiFall ${2 + Math.random() * 2}s linear forwards`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 4000);
             }
-        });
-        // Add this function at the beginning of your script section
-// Update the getRandomGender function to be truly random each time
-function getRandomGender() {
-    return Math.random() < 0.5 ? 'boy' : 'girl';
-}
+        }
 
-function revealGender() {
+        function revealGender() {
     const revealContainer = document.getElementById('genderReveal');
     const overlay = revealContainer.querySelector('.reveal-overlay');
     const revealText = revealContainer.querySelector('.reveal-text');
     const genderIcon = revealContainer.querySelector('.gender-icon');
     
-    // Prevent multiple clicks during animation
     if (revealContainer.dataset.revealing === 'true') return;
     revealContainer.dataset.revealing = 'true';
     
-    // Before reveal
     overlay.style.backgroundColor = '#e0e0e0';
     genderIcon.innerHTML = '❓👶❓';
-    revealText.innerHTML = "Revealing...";
+    revealText.innerHTML = "3";
     
-    // Add suspense with a countdown
-    let count = 3;
+    let count = 2;
     const countdown = setInterval(() => {
         revealText.innerHTML = count;
         count--;
         
         if (count < 0) {
             clearInterval(countdown);
-            // Get random gender at reveal time
-            const gender = getRandomGender();
-            revealContainer.classList.add('revealed');
+            const gender = Math.random() < 0.5 ? 'boy' : 'girl';
             
             if (gender === 'boy') {
-                overlay.style.backgroundColor = '#89CFF0';
+                overlay.style.backgroundColor = 'var(--boy-color)';
                 genderIcon.innerHTML = '👶🤴';
                 revealText.innerHTML = "It's a BOY! 💙";
-                createGenderConfetti('boy');
             } else {
-                overlay.style.backgroundColor = '#f8bbd0';
+                overlay.style.backgroundColor = 'var(--girl-color)';
                 genderIcon.innerHTML = '👶👸';
                 revealText.innerHTML = "It's a GIRL! 💗";
-                createGenderConfetti('girl');
             }
             
-            // Reset revealing state after animation
+            createConfetti(gender);
             setTimeout(() => {
                 revealContainer.dataset.revealing = 'false';
             }, 3000);
@@ -525,23 +470,48 @@ function revealGender() {
     }, 1000);
 }
 
-function createGenderConfetti(gender) {
-    const colors = gender === 'boy or girl' 
-        ? ['#89CFF0', '#4682B4', '#0000FF', '#000080', '#FFFFFF'] // Boy colors
-        : ['#f8bbd0', '#FF69B4', '#FF1493', '#C71585', '#FFFFFF']; // Girl colors
+function openModal() {
+    const modal = document.getElementById('photoModal');
+    modal.style.display = 'flex';
+    storyProgress = 0;
     
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        document.body.appendChild(confetti);
-        
-        setTimeout(() => {
-            confetti.remove();
-        }, 3000);
-    }
+    // Reset overlays and final message
+    document.querySelectorAll('.story-overlay').forEach(overlay => {
+        overlay.style.display = 'none';
+        overlay.classList.remove('visible');
+    });
+    document.getElementById('finalMessage').style.display = 'none';
 }
+
+function closeModal() {
+    const modal = document.getElementById('photoModal');
+    modal.style.display = 'none';
+}
+
+// Event Listeners
+document.getElementById('surprise').addEventListener('click', openModal);
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('photoModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Create sparkles effect
+function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkles';
+    sparkle.innerHTML = '✨';
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.top = Math.random() * 100 + 'vh';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 2000);
+}
+
+// Add periodic sparkles
+setInterval(createSparkle, 2000);
     </script>
 </body>
 </html>
