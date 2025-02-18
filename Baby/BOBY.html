@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,21 +341,20 @@
     <div class="modal" id="photoModal">
         <div class="modal-content animate__animated animate__zoomIn">
             <button class="close-button" onclick="closeModal()">✖</button>
-            <h2>Your Journey Begins ❤️</h2>
+            <h2>Our Journey Begins ❤️</h2>
             
             <div class="photo-gallery">
                 <div class="photo-container" onclick="showStory(1)">
-                    <img src="photo1.jpg" alt="Family photo 1" class="photo">
+                    <img src="/photo1.jpg" alt="Family photo 1" class="photo">
                     <div class="story-overlay" id="story1">
-                        To my favorite couple, guess who's joining our tiny love squad? 
-                        Aww, my heart is melting just thinking about you two as parents
-                        Your love, patience, and kindness will surely make you amazing parents, 
+                        To my wonderful Mama and Mami, guess who's joining our tiny love squad? 
+                        Your kindness, patience, and strength will make you wonderful mothers, 
                         and your child will be so blessed to have you both. 🌟
                     </div>
                 </div>
 
                 <div class="photo-container reveal" id="genderReveal" onclick="revealGender()">
-                    <img src="photo3.jpg" alt="Gender reveal photo" class="photo">
+                    <img src="/photo3.jpg" alt="Gender reveal photo" class="photo">
                     <div class="reveal-overlay">
                         <div class="gender-icon">👶</div>
                         <div class="reveal-text">Click to reveal!</div>
@@ -364,10 +362,10 @@
                 </div>
 
                 <div class="photo-container" onclick="showStory(2)">
-                    <img src="photo2.jpg" alt="Family photo 2" class="photo">
+                    <img src="/photo2.jpg" alt="Family photo 2" class="photo">
                     <div class="story-overlay" id="story2">
-                        I'm excited to see you both as mommies and daddy and can't wait to meet my little sibling! 
-                      Cheers to the newest chapter of their love story—parenthood! 🌈👶❤️
+                        I'm excited to see you both as mommies and can't wait to meet my little sibling! 
+                        Love you both so much! ❤️
                     </div>
                 </div>
             </div>
@@ -436,41 +434,38 @@
     const overlay = revealContainer.querySelector('.reveal-overlay');
     const revealText = revealContainer.querySelector('.reveal-text');
     const genderIcon = revealContainer.querySelector('.gender-icon');
-    
-    if (revealContainer.dataset.revealing === 'true') return;
-    revealContainer.dataset.revealing = 'true';
-    
-    overlay.style.backgroundColor = '#e0e0e0';
-    genderIcon.innerHTML = '❓👶❓';
-    revealText.innerHTML = "3";
-    
-    let count = 2;
-    const countdown = setInterval(() => {
-        revealText.innerHTML = count;
-        count--;
-        
-        if (count < 0) {
-            clearInterval(countdown);
-            const gender = Math.random() < 0.5 ? 'boy' : 'girl';
-            
-            if (gender === 'boy') {
-                overlay.style.backgroundColor = 'var(--boy-color)';
-                genderIcon.innerHTML = '👶🤴';
-                revealText.innerHTML = "It's a BOY! 💙";
-            } else {
-                overlay.style.backgroundColor = 'var(--girl-color)';
-                genderIcon.innerHTML = '👶👸';
-                revealText.innerHTML = "It's a GIRL! 💗";
-            }
-            
-            createConfetti(gender);
-            setTimeout(() => {
-                revealContainer.dataset.revealing = 'false';
-            }, 3000);
-        }
-    }, 1000);
-}
 
+    // Reset previous state completely
+    revealContainer.dataset.revealed = 'true';
+    overlay.style.transition = 'background-color 0.5s ease';
+    
+    // Generate fresh random gender (true 50/50 chance)
+    const genderNumber = Math.random();
+    const isBoy = genderNumber < 0.5;
+    
+    // Set elements based on gender
+    if (isBoy) {
+        overlay.style.backgroundColor = 'var(--boy-color)';
+        genderIcon.innerHTML = '👶🚀🤴';
+        revealText.innerHTML = "It's a BOY! 💙";
+    } else {
+        overlay.style.backgroundColor = 'var(--girl-color)';
+        genderIcon.innerHTML = '👶🌸👸';
+        revealText.innerHTML = "It's a GIRL! 💗";
+    }
+
+    // Add celebration effects
+    createConfetti(isBoy ? 'boy' : 'girl');
+    createFloatingHearts({ target: revealContainer });
+
+    // Full reset after completion
+    setTimeout(() => {
+        overlay.style.backgroundColor = '#e0e0e0';
+        genderIcon.innerHTML = '👶';
+        revealText.innerHTML = "Click to reveal!";
+        revealContainer.dataset.revealed = 'false';
+    }, 5000);
+}
 function openModal() {
     const modal = document.getElementById('photoModal');
     modal.style.display = 'flex';
